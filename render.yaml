@@ -1,1 +1,7 @@
-
+services:
+  - type: web
+    name: tiktok-esp32-control
+    env: node
+    plan: free
+    buildCommand: "npm install"
+    startCommand: "npm start"
