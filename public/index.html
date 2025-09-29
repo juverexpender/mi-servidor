@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Control ESP32 TikTok</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 40px;
+      background: #f8f8f8;
+    }
+    button {
+      font-size: 20px;
+      margin: 10px;
+      padding: 15px 25px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      color: white;
+    }
+    #onBtn { background: #28a745; }
+    #offBtn { background: #dc3545; }
+    #estado { font-size: 18px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h1>🔴 Control ESP32 con TikTok Live</h1>
+  <button id="onBtn">Encender LED</button>
+  <button id="offBtn">Apagar LED</button>
+  <div id="estado">Estado: desconocido</div>
+
+  <script>
+    async function actualizarEstado() {
+      const res = await fetch("/estado");
+      const data = await res.json();
+      document.getElementById("estado").textContent = "Estado: " + data.estado;
+    }
+
+    document.getElementById("onBtn").onclick = async () => {
+      await fetch("/led/on");
+      actualizarEstado();
+    };
+
+    document.getElementById("offBtn").onclick = async () => {
+      await fetch("/led/off");
+      actualizarEstado();
+    };
+
+    actualizarEstado();
+  </script>
+</body>
+</html>
