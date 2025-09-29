@@ -1,1 +1,13 @@
-
+{
+  "name": "tiktok-esp32-control",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.3",
+    "express": "^4.19.2",
+    "tiktok-live-connector": "^2.0.5"
+  }
+}
